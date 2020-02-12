@@ -1056,6 +1056,6 @@ and Our app is finally complete.
 Congratulations on make it to here! You've learned about gqlgen library and some Graphql fundamentals. By implementing a HackerNews clone you've learned about queries, mutations, authentication and GraphQL query language. 
 ### Further Steps
 If you want to create more complex GrahpQL APIs there are few things you can check out:
-* Implement voting feature for hackernews clone app.
-* Read about (Relays)[https://facebook.github.io/relay/docs/en/graphql-server-specification.html] and Pagination and implement them in app.
-* don't forget to visit (Learn GraphQL page)[https://graphql.org/learn/].
+* Implement voting feature and pagination for the app.
+* Read about [Relays](https://facebook.github.io/relay/docs/en/graphql-server-specification.html).
+* don't forget to visit (Learn GraphQL page)[https://graphql.org/learn/] to learn more about GraphQL world.

@@ -1013,7 +1013,7 @@ and the line that we execute query to:
 res, err := statement.Exec(link.Title, link.Address, link.User.ID)
 ```
 Then when we query for users we also fill the `User` field for Link, so we need to join Links and Users table in our `GetAll` functions to fill the User field.
-If you are not familiar with join checkout (this link)[https://www.w3schools.com/sql/sql_join_inner.asp].
+If you are not familiar with join checkout [this link](https://www.w3schools.com/sql/sql_join_inner.asp).
 
 `internal/links/links.go`:
 ```go

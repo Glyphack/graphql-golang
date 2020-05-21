@@ -6,6 +6,7 @@ tags: graphql, go, api, gqlgen
 ---
 ## Table Of Contents
 - [Table Of Contents](#table-of-contents)
+  - [How to Run The Porject](#how-to-run-project)
   - [Motivation ](#motivation)
       - [What is a GraphQL server?](#what-is-a-graphql-server)
       - [Schema-Driven Development](#schema-driven-development)
@@ -38,6 +39,24 @@ tags: graphql, go, api, gqlgen
   - [Summary](#summary)
     - [Further Steps](#further-steps)
   
+  
+### How to Run The Project <a name="how-to-run-project"></a>
+First start mysql server with docker:
+```bash
+docker run --name mysql -e MYSQL_ROOT_PASSWORD=dbpass -d mysql:latest
+```
+Then create a Table names hackernews for our app:
+```sql
+docker exec -it mysql bash
+mysql -u root -p
+CREATE DATABASE hackernews;
+```
+finally run the server: 
+```bash
+go run server/server.go
+```
+Now navigate to https://localhost:8080 you can see graphiql playground and query the graphql server.
+
 
 ### Motivation <a name="motivation"></a>
 [**Go**](https://golang.org/) is a modern general purpose programming language designed by google; best known for it's simplicity, concurrency and fast performance. It's being used by big players in the industry like Google, Docker, Lyft and Uber. If you are new to golang you can start from [golang tour](https://tour.golang.org/) to learn fundamentals.

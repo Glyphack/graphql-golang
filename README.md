@@ -975,8 +975,8 @@ Implementation is pretty straightforward so we skip the explanation for this.
 
 
 #### Completing Our app <a name="completing-our-app"></a>
-Our CreateLink mutation left incomplete because we could not authorize users back then, so let's get back to it and complete the implementation.
-With what we did in [authentication middleware](#authentication-middleware) we can retrieve user in resolvers using ctx argument. so in CreateLink function add these lines:
+Our CreateLink mutation left incomplete because we could not authorize users back then, so let's get back to it and complete the implementation. With what we have now, we can check whether the user is logged in or not by checking the Authorization HTTP header.
+With what we did in authentication middleware we can retrieve user in resolvers using ctx argument. so in CreateLink function add these lines:
 
 `resolver.go`:
 ```go
@@ -1073,6 +1073,37 @@ func GetAll() []Link {
 ```
 
 and Our app is finally complete.
+To test the endpoint navigate to localhost:8080 and write the mutation to create link:
+```graphql
+mutation {
+  createLink(input: {title: "real link!", address: "www.graphl.org"}){
+    user{
+      name
+    }
+  }
+}
+```
+if you try it now you will get a access denied message:
+```json
+{
+  "errors": [
+    {
+      "message": "access denied",
+      "path": [
+        "createLink"
+      ]
+    }
+  ],
+  "data": null
+}
+```
+So you may realize that we prevented not logged in users from submitting links, To create link now you must set the Authorization header. From the bottom select HTTP Headers button and fill it like this:
+```js
+{
+  "Authorization": "" // use your own generated token
+}
+```
+Try again you should be able to create a new link now.
 
 ## Summary <a name="summary"></a>
 Congratulations on make it to here! You've learned about gqlgen library and some Graphql fundamentals. By implementing a HackerNews clone you've learned about queries, mutations, authentication and GraphQL query language. 

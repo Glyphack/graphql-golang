@@ -18,7 +18,7 @@ func InitDB() {
 	}
 
 	if err = db.Ping(); err != nil {
- 		log.Panic(err)
+		log.Panic(err)
 	}
 	Db = db
 }

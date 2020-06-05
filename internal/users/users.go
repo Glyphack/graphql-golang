@@ -2,7 +2,7 @@ package users
 
 import (
 	"database/sql"
-	"github.com/glyphack/go-graphql-hackernews/internal/pkg/db/mysql"
+	"github.com/glyphack/graphlq-golang/internal/pkg/db/mysql"
 	"golang.org/x/crypto/bcrypt"
 	"log"
 )
@@ -83,7 +83,7 @@ func GetUsernameById(userId string) (User, error) {
 		return User{}, err
 	}
 
-	return User{ID:userId, Username:username}, nil
+	return User{ID: userId, Username: username}, nil
 }
 
 //HashPassword hashes given password

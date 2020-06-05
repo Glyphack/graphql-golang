@@ -1,8 +1,8 @@
 package links
 
 import (
-	database "github.com/glyphack/go-graphql-hackernews/internal/pkg/db/mysql"
-	"github.com/glyphack/go-graphql-hackernews/internal/users"
+	database "github.com/glyphack/graphlq-golang/internal/pkg/db/mysql"
+	"github.com/glyphack/graphlq-golang/internal/users"
 	"log"
 )
 
@@ -15,7 +15,7 @@ type Link struct {
 }
 
 //#2
-func (link Link)  Save() int64 {
+func (link Link) Save() int64 {
 	//#3
 	statement, err := database.Db.Prepare("INSERT INTO Links(Title,Address, UserID) VALUES(?,?, ?)")
 	if err != nil {
@@ -35,7 +35,6 @@ func (link Link)  Save() int64 {
 	return id
 }
 
-
 func GetAll() []Link {
 	stmt, err := database.Db.Prepare("select L.id, L.title, L.address, L.UserID, U.Username from Links L inner join Users U on L.UserID = U.ID")
 	if err != nil {
@@ -53,7 +52,7 @@ func GetAll() []Link {
 	for rows.Next() {
 		var link Link
 		err := rows.Scan(&link.ID, &link.Title, &link.Address, &id, &username)
-		if err != nil{
+		if err != nil {
 			log.Fatal(err)
 		}
 		link.User = &users.User{

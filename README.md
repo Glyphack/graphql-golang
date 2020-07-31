@@ -6,7 +6,7 @@ tags: graphql, go, api, gqlgen
 ---
 ## Table Of Contents
 - [Table Of Contents](#table-of-contents)
-  - [How to Run The Porject](#how-to-run-project)
+  - [How to Run The Project](#how-to-run-project)
   - [Motivation ](#motivation)
       - [What is a GraphQL server?](#what-is-a-graphql-server)
       - [Schema-Driven Development](#schema-driven-development)
@@ -24,7 +24,7 @@ tags: graphql, go, api, gqlgen
       - [Models and migrations](#models-and-migrations)
   - [Create and Retrieve Links](#create-and-retrieve-links)
       - [CreateLinks](#createlinks)
-      - [links Query](#links-query)
+      - [Links Query](#links-query)
   - [Authentication](#authentication)
       - [JWT](#jwt)
       - [Setup](#setup)

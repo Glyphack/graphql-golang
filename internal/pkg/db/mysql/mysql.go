@@ -23,6 +23,10 @@ func InitDB() {
 	Db = db
 }
 
+func CloseDB() error {
+	return Db.Close()
+}
+
 func Migrate() {
 	if err := Db.Ping(); err != nil {
 		log.Fatal(err)

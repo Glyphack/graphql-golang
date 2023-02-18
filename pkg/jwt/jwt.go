@@ -1,9 +1,10 @@
 package jwt
 
 import (
-	"github.com/dgrijalva/jwt-go"
 	"log"
 	"time"
+
+	"github.com/golang-jwt/jwt/v4"
 )
 
 // secret key being used to sign tokens
@@ -11,13 +12,13 @@ var (
 	SecretKey = []byte("secret")
 )
 
-//data we save in each token
+// data we save in each token
 type Claims struct {
 	username string
 	jwt.StandardClaims
 }
 
-//GenerateToken generates a jwt token and assign a username to it's claims and return it
+// GenerateToken generates a jwt token and assign a username to it's claims and return it
 func GenerateToken(username string) (string, error) {
 	token := jwt.New(jwt.SigningMethodHS256)
 	/* Create a map to store our claims */
@@ -33,7 +34,7 @@ func GenerateToken(username string) (string, error) {
 	return tokenString, nil
 }
 
-//ParseToken parses a jwt token and returns the username it it's claims
+// ParseToken parses a jwt token and returns the username it it's claims
 func ParseToken(tokenStr string) (string, error) {
 	token, err := jwt.Parse(tokenStr, func(token *jwt.Token) (interface{}, error) {
 		return SecretKey, nil

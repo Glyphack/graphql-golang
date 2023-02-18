@@ -31,7 +31,9 @@ func main() {
 	database.InitDB()
 	defer database.CloseDB()
 	database.Migrate()
-	server := handler.NewDefaultServer(generated.NewExecutableSchema(generated.Config{Resolvers: &graph.Resolver{}}))
+	server := handler.NewDefaultServer(
+		generated.NewExecutableSchema(generated.Config{Resolvers: &graph.Resolver{}}),
+	)
 	router.Handle("/", playground.Handler("GraphQL playground", "/query"))
 	router.Handle("/query", server)
 

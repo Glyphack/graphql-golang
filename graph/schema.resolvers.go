@@ -16,7 +16,10 @@ import (
 	"github.com/glyphack/graphlq-golang/pkg/jwt"
 )
 
-func (r *mutationResolver) CreateLink(ctx context.Context, input model.NewLink) (*model.Link, error) {
+func (r *mutationResolver) CreateLink(
+	ctx context.Context,
+	input model.NewLink,
+) (*model.Link, error) {
 	user := auth.ForContext(ctx)
 	if user == nil {
 		return &model.Link{}, fmt.Errorf("access denied")
@@ -30,7 +33,12 @@ func (r *mutationResolver) CreateLink(ctx context.Context, input model.NewLink) 
 		ID:   user.ID,
 		Name: user.Username,
 	}
-	return &model.Link{ID: strconv.FormatInt(linkId, 10), Title: link.Title, Address: link.Address, User: grahpqlUser}, nil
+	return &model.Link{
+		ID:      strconv.FormatInt(linkId, 10),
+		Title:   link.Title,
+		Address: link.Address,
+		User:    grahpqlUser,
+	}, nil
 }
 
 func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) (string, error) {
@@ -61,7 +69,10 @@ func (r *mutationResolver) Login(ctx context.Context, input model.Login) (string
 	return token, nil
 }
 
-func (r *mutationResolver) RefreshToken(ctx context.Context, input model.RefreshTokenInput) (string, error) {
+func (r *mutationResolver) RefreshToken(
+	ctx context.Context,
+	input model.RefreshTokenInput,
+) (string, error) {
 	username, err := jwt.ParseToken(input.Token)
 	if err != nil {
 		return "", fmt.Errorf("access denied")
@@ -81,7 +92,10 @@ func (r *queryResolver) Links(ctx context.Context) ([]*model.Link, error) {
 		grahpqlUser := &model.User{
 			Name: link.User.Password,
 		}
-		resultLinks = append(resultLinks, &model.Link{ID: link.ID, Title: link.Title, Address: link.Address, User: grahpqlUser})
+		resultLinks = append(
+			resultLinks,
+			&model.Link{ID: link.ID, Title: link.Title, Address: link.Address, User: grahpqlUser},
+		)
 	}
 	return resultLinks, nil
 }

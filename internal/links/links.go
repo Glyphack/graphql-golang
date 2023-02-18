@@ -1,9 +1,10 @@
 package links
 
 import (
+	"log"
+
 	database "github.com/glyphack/graphlq-golang/internal/pkg/db/mysql"
 	"github.com/glyphack/graphlq-golang/internal/users"
-	"log"
 )
 
 // #1
@@ -36,7 +37,9 @@ func (link Link) Save() int64 {
 }
 
 func GetAll() []Link {
-	stmt, err := database.Db.Prepare("select L.id, L.title, L.address, L.UserID, U.Username from Links L inner join Users U on L.UserID = U.ID")
+	stmt, err := database.Db.Prepare(
+		"select L.id, L.title, L.address, L.UserID, U.Username from Links L inner join Users U on L.UserID = U.ID",
+	)
 	if err != nil {
 		log.Fatal(err)
 	}
